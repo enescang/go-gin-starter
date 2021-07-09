@@ -5,6 +5,7 @@ import (
 	"os"
 
 	"github.com/enescang/go-gin-starter/db"
+	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 	"go.mongodb.org/mongo-driver/mongo"
 )
@@ -13,7 +14,10 @@ var client *mongo.Database
 
 func main() {
 	godotenv.Load()
-	client = db.Init()
+	client, _ = db.Init()
 	port := os.Getenv("PORT")
-	fmt.Println("The PORT is: ", port)
+
+	router := gin.Default()
+
+	fmt.Println("The PORT is: ", port, router)
 }
