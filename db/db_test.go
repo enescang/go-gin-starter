@@ -2,7 +2,6 @@ package db
 
 import (
 	"os"
-	"regexp"
 	"testing"
 
 	"github.com/joho/godotenv"
@@ -14,7 +13,9 @@ func TestDbConnection(t *testing.T) {
 	_, err = Init()
 	assert.Nil(t, err)
 
+	//Even the MONGO_URI change Init() must not throwing any error
+	//Because we use singleton pattern to connection DB
 	os.Setenv("MONGO_URI", "broken-mongo-uri")
 	_, err = Init()
-	assert.Regexp(t, regexp.MustCompile("parsing uri"), err)
+	assert.Nil(t, err)
 }
