@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"context"
+	"strings"
 	"time"
 
 	"github.com/enescang/go-gin-starter/db"
@@ -36,14 +37,14 @@ func signup(c *gin.Context) {
 		return
 	}
 	var user models.UserSchema = models.UserSchema{
-		Email:     schema.Email,
+		Email:     strings.ToLower(schema.Email),
 		Password:  schema.Password,
 		FullName:  schema.FullName,
 		CreatedAt: time.Now(),
 		UpdatedAt: time.Now(),
 	}
 
-	filter := bson.M{"email": schema.Email}
+	filter := bson.M{"email": user.Email}
 	count, err := DB.Collection("users").CountDocuments(context.TODO(), filter)
 	if err != nil {
 		c.AbortWithStatusJSON(500, gin.H{
