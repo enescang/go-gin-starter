@@ -11,3 +11,6 @@ require (
 )
 
 replace github.com/enescang/go-gin-starter/db => ./db
+replace github.com/enescang/go-gin-starter/utils => ./utils
+replace github.com/enescang/go-gin-starter/models => ./models
+replace github.com/enescang/go-gin-starter/controllers => ./controllers
