@@ -7,6 +7,7 @@ import (
 
 	"github.com/enescang/go-gin-starter/db"
 	"github.com/enescang/go-gin-starter/models"
+	"github.com/enescang/go-gin-starter/utils"
 	"github.com/gin-gonic/gin"
 	"go.mongodb.org/mongo-driver/bson"
 )
@@ -44,6 +45,8 @@ func signup(c *gin.Context) {
 		UpdatedAt: time.Now(),
 	}
 
+	hash, _ := utils.GenerateHash(user.Password)
+	user.Password = hash
 	filter := bson.M{"email": user.Email}
 	count, err := DB.Collection("users").CountDocuments(context.TODO(), filter)
 	if err != nil {
