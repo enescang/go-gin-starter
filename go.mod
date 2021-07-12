@@ -8,9 +8,13 @@ require (
 	github.com/joho/godotenv v1.3.0
 	github.com/stretchr/testify v1.6.1
 	go.mongodb.org/mongo-driver v1.5.4
+	golang.org/x/crypto v0.0.0-20210711020723-a769d52b0f97 // indirect
 )
 
 replace github.com/enescang/go-gin-starter/db => ./db
+
 replace github.com/enescang/go-gin-starter/utils => ./utils
+
 replace github.com/enescang/go-gin-starter/models => ./models
+
 replace github.com/enescang/go-gin-starter/controllers => ./controllers
