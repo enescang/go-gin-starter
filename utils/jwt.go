@@ -31,7 +31,7 @@ func VerifyToken(token string, checkExpiration ...bool) (*AuthClaims, error) {
 		return JWT_SECRET_KEY, nil
 	})
 	claims, ok := check.Claims.(*AuthClaims)
-	if !ok {
+	if !ok || !check.Valid {
 		return &AuthClaims{}, err
 	}
 
